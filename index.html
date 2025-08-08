@@ -3,14 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Sania 🎉</title>
+<title>Happy Birthday Sania</title>
 <style>
-    /* Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
         height: 100vh;
@@ -22,8 +17,6 @@
         text-align: center;
         overflow: hidden;
     }
-
-    /* Background Gradient Animation */
     @keyframes gradientBG {
         0% {background-position: 0% 50%;}
         50% {background-position: 100% 50%;}
@@ -54,7 +47,6 @@
         100% {transform: translateY(-800px) rotate(45deg); opacity: 0;}
     }
 
-    /* Heading Animation */
     h1 {
         font-size: 3rem;
         margin-top: 40px;
@@ -65,20 +57,13 @@
         to { text-shadow: 0 0 20px #fff, 0 0 40px #ff6ec4, 0 0 60px #ff6ec4; }
     }
 
-    /* Name Typewriter Effect */
     .name {
         font-size: 2rem;
+        font-weight: bold;
         margin-top: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 3px solid #fff;
-        width: 0;
-        animation: typing 3s steps(20, end) forwards, blink 0.8s infinite;
+        color: #ffefef;
     }
-    @keyframes typing { to { width: 10ch; } }
-    @keyframes blink { 50% { border-color: transparent; } }
 
-    /* Besti Photo */
     .photo {
         margin-top: 30px;
         width: 200px;
@@ -95,7 +80,6 @@
         100% { transform: scale(1); }
     }
 
-    /* Message */
     .message {
         font-size: 1.2rem;
         margin: 30px auto;
@@ -103,7 +87,6 @@
         line-height: 1.6;
     }
 
-    /* Footer */
     footer {
         position: absolute;
         bottom: 20px;
@@ -117,21 +100,20 @@
 </head>
 <body>
 
-<h1>🎉 Happy Birthday 🎉</h1>
-<div class="name">Sania</div>
+<h1>Happy Birthday</h1>
+<div class="name"><b>Sania</b></div>
 
 <img src="https://i.postimg.cc/hXNK24y5/IMG-20250806-WA0007.jpg" alt="Sania Photo" class="photo">
 
 <div class="message">
-    Sania tum meri zindgi me saab se especial hu ❤️<br>
-    meri wo dost meri hu besti jis ki sath mujy hamehsa sukoon milta 🥰
+    Sania, tum meri zindagi ka sabse khoobsurat hissa ho ❤️<br>
+    Meri wo dost, meri wo besti, jiske saath mujhe hamesha sukoon, pyaar aur apnapan milta hai 🫴🏻🫀
 </div>
 
 <footer>
-    From: Your Hamidoo 💕 • Made with Love ❤️ • 8 August 2025
+    From: Your Hamidoo • Made with ❤️
 </footer>
 
-<!-- Hearts Animation -->
 <script>
 function createHeart() {
     const heart = document.createElement('div');
