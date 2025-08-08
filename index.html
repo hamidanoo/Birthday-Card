@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday 🎉</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1320;
+      --accent:#ff6b6b;
+      --accent2:#ffd166;
+      --muted: rgba(255,255,255,0.75);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(255,107,107,0.06), transparent 10%),
+        radial-gradient(900px 500px at 90% 90%, rgba(255,209,102,0.04), transparent 10%),
+        linear-gradient(180deg,#071026 0%, #071726 50%, #031022 100%);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .card {
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:18px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:0;
+      align-items:stretch;
+    }
+
+    /* Left content */
+    .hero {
+      padding:44px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .badge {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#08121a;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:0.4px;
+      width:fit-content;
+      box-shadow: 0 6px 18px rgba(255,107,107,0.12);
+    }
+    h1 {
+      margin:0;
+      font-size:36px;
+      line-height:1.02;
+      font-weight:900;
+      letter-spacing:-0.6px;
+    }
+    p.lead {
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width:70%;
+    }
+
+    .buttons {
+      margin-top:12px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      padding:10px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      cursor:pointer;
+      font-weight:600;
+      transition:all .18s ease;
+      backdrop-filter: blur(6px);
+    }
+    .btn.primary {
+      background: linear-gradient(90deg,var(--accent),#ff8a7a);
+      border:none;
+      color:#07121a;
+      box-shadow: 0 8px 24px rgba(255,107,107,0.12);
+    }
+    .btn:active{transform:translateY(1px)}
+    .meta {
+      margin-top:auto;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Right image area */
+    .visual {
+      position:relative;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .frame {
+      width:90%;
+      height:340px;
+      border-radius:14px;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1);
+      transition:transform .6s ease;
+      filter: saturate(1.05) brightness(0.98);
+    }
+    .frame:hover img{ transform:scale(1.03) }
+
+    .overlay {
+      position:absolute;
+      inset:20px;
+      pointer-events:none;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+    .titleCard {
+      color:#fff;
+      text-shadow:0 10px 30px rgba(2,6,23,0.6);
+    }
+    .titleCard h3{
+      margin:0;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:-0.3px;
+    }
+    .titleCard small{color:rgba(255,255,255,0.85)}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .card { grid-template-columns: 1fr; }
+      .frame{ height:260px }
+      .hero { padding:28px; }
+      p.lead { max-width:100%; }
+    }
+
+    /* Confetti canvas */
+    canvas.confetti-canvas {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:9999;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <div class="card" role="main">
+    <div class="hero">
+      <span class="badge">Happy Birthday</span>
+      <h1>Happy Birthday, <span id="nameDisplay">Bestie</span> 🎂</h1>
+      <p class="lead">Wishing you a day full of love, laughter and unforgettable moments. May your year ahead overflow with blessings and joy.</p>
+
+      <div class="buttons">
+        <button class="btn primary" id="wishBtn">Send a Wish 🎉</button>
+        <button class="btn" id="musicToggle">Play Music ⏵</button>
+        <button class="btn" id="downloadBtn">Download Card 📥</button>
+      </div>
+
+      <div class="meta">
+        <div>
+          <strong id="fromName">From: Your Best Friend</strong><br>
+          <small id="dateText">Made with ❤️ • <span id="year"></span></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual" role="complementary" aria-label="Birthday image">
+      <div class="frame" id="frame">
+        <img id="mainImg" src="https://images.unsplash.com/photo-1505765052889-1b2d7d5976f2?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2f4d1a9b9d59f19b4f9dbd1b8e8f3b93" alt="Birthday cake">
+        <div class="overlay">
+          <div class="titleCard" style="padding:18px;">
+            <h3>Make it unforgettable</h3>
+            <small>Tap "Send a Wish" to drop some confetti ✨</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio: replace 'audioUrl' with your file or remove if you don't want music -->
+  <audio id="bgMusic" loop preload="none" src="https://cdn.pixabay.com/download/audio/2021/12/14/audio_6d15c8e2a6.mp3?filename=happy-ukulele-6580.mp3"></audio>
+
+  <script>
+    // small helpers & UI
+    const nameDisplay = document.getElementById('nameDisplay');
+    const yearSpan = document.getElementById('year');
+    const wishBtn = document.getElementById('wishBtn');
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const fromName = document.getElementById('fromName');
+
+    // Fill dynamic values (you can edit these or read from URL params)
+    const params = new URLSearchParams(location.search);
+    const guestName = params.get('to') || 'Bestie';
+    const sender = params.get('from') || 'Your Best Friend';
+    nameDisplay.textContent = guestName;
+    fromName.textContent = `From: ${sender}`;
+    yearSpan.textContent = new Date().getFullYear();
+
+    // Music toggle with simple UX
+    let musicPlaying = false;
+    musicToggle.addEventListener('click', async () => {
+      try {
+        if (!musicPlaying) {
+          await bgMusic.play();
+          musicPlaying = true;
+          musicToggle.textContent = 'Pause Music ⏸';
+        } else {
+          bgMusic.pause();
+          musicPlaying = false;
+          musicToggle.textContent = 'Play Music ⏵';
+        }
+      } catch (e) {
+        alert('Play blocked by browser — tap the button again to allow.');
+      }
+    });
+
+    // Confetti (lightweight)
+    (function Confetti(){
+      const canvas = document.querySelector('canvas.confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
+      addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+
+      function rand(min,max){ return Math.random()*(max-min)+min; }
+      function particle(x,y,color){
+        return {x,y,vx:rand(-2,2), vy:rand(-6,-2), r:rand(6,10), color, rot:rand(0,6.28), vr:rand(-0.1,0.1), life:rand(60,120)};
+      }
+      const colors = ['#ff6b6b','#ffd166','#8de969','#6bc5ff','#d39bff','white'];
+      let particles=[];
+
+      function emit(x,y,amount=28){
+        for(let i=0;i<amount;i++) particles.push(particle(x,y,colors[Math.floor(Math.random()*colors.length)]));
+      }
+
+      function step(){
+        ctx.clearRect(0,0,w,h);
+        for(let i=particles.length-1;i>=0;i--){
+          const p=particles[i];
+          p.vy+=0.12; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.life--;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle=p.color;
+          ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+          ctx.restore();
+          if (p.y>h+50 || p.life<=0) particles.splice(i,1);
+        }
+        requestAnimationFrame(step);
+      }
+      step();
+
+      // Expose emit
+      window.dropConfetti = (x,y)=> emit(x,y);
+    })();
+
+    // Button: Send a Wish -> drop confetti + micro-animation
+    wishBtn.addEventListener('click', (e)=>{
+      // position near button center:
+      const rect = wishBtn.getBoundingClientRect();
+      const x = rect.left + rect.width/2 + (Math.random()*80-40);
+      const y = rect.top + rect.height/2 + (Math.random()*40-20);
+      if (window.dropConfetti) window.dropConfetti(x,y,);
+      wishBtn.animate([{transform:'translateY(-6px)'},{transform:'translateY(0)'}], {duration:350, easing:'cubic-bezier(.2,.9,.2,1)'});
+    });
+
+    // Download card as PNG (simple approach: capture frame area using toDataURL won't capture external images due CORS).
+    // We'll fallback to prompt to save the page if html2canvas unavailable.
+    downloadBtn.addEventListener('click', ()=>{
+      alert('To save: take a screenshot (recommended) or use "Save as PDF" from browser share menu. Tip: open in desktop for best export.');
+    });
+
+    // Allow URL parameters to customize image & audio (optional)
+    const imgParam = params.get('img');
+    if (imgParam) document.getElementById('mainImg').src = imgParam;
+    const audioParam = params.get('audio');
+    if (audioParam) bgMusic.src = audioParam;
+  </script>
+</body>
+          </html>
