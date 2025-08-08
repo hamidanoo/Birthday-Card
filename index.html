@@ -5,85 +5,144 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Sania 🎉</title>
 <style>
-    body {
+    /* Reset */
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4facfe, #43e97b);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
         font-family: 'Poppins', sans-serif;
-        background: #ffdde1;
-        background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+        color: white;
         text-align: center;
-        color: #fff;
-    }
-
-    header {
-        padding: 30px 20px 10px;
-    }
-
-    h1 {
-        font-size: 48px;
-        margin: 0;
-        font-weight: 900;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-    }
-
-    h2 {
-        font-size: 36px;
-        margin: 10px 0 20px;
-        font-weight: 700;
-    }
-
-    p.message {
-        max-width: 600px;
-        margin: 0 auto;
-        font-size: 18px;
-        line-height: 1.6;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 15px 20px;
-        border-radius: 12px;
-    }
-
-    .photo {
-        margin: 30px auto;
-        max-width: 300px;
-        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
-    .photo img {
-        width: 100%;
-        display: block;
+    /* Background Gradient Animation */
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
     }
 
+    /* Floating Hearts */
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 0, 85, 0.8);
+        transform: rotate(45deg);
+        animation: floatUp 6s linear infinite;
+    }
+    .heart::before, .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes floatUp {
+        0% {transform: translateY(0) rotate(45deg); opacity: 1;}
+        100% {transform: translateY(-800px) rotate(45deg); opacity: 0;}
+    }
+
+    /* Heading Animation */
+    h1 {
+        font-size: 3rem;
+        margin-top: 40px;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #fff, 0 0 20px #ff6ec4, 0 0 30px #ff6ec4; }
+        to { text-shadow: 0 0 20px #fff, 0 0 40px #ff6ec4, 0 0 60px #ff6ec4; }
+    }
+
+    /* Name Typewriter Effect */
+    .name {
+        font-size: 2rem;
+        margin-top: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #fff;
+        width: 0;
+        animation: typing 3s steps(20, end) forwards, blink 0.8s infinite;
+    }
+    @keyframes typing { to { width: 10ch; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    /* Besti Photo */
+    .photo {
+        margin-top: 30px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 0 20px rgba(255,255,255,0.6);
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    /* Message */
+    .message {
+        font-size: 1.2rem;
+        margin: 30px auto;
+        width: 80%;
+        line-height: 1.6;
+    }
+
+    /* Footer */
     footer {
-        margin-top: 20px;
-        padding: 15px;
-        font-size: 14px;
-        background: rgba(0, 0, 0, 0.2);
-        border-top: 1px solid rgba(255,255,255,0.3);
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        font-size: 0.9rem;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out 4s forwards;
     }
+    @keyframes fadeIn { to { opacity: 1; } }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>Happy Birthday 🎉</h1>
-    <h2>Sania</h2>
-</header>
+<h1>🎉 Happy Birthday 🎉</h1>
+<div class="name">Sania</div>
 
-<p class="message">
-    Sania tum meri zindgi me saab se especial hu meri wo dost meri hu besti jis ki sath mujy hamehsa sukoon milta.
-</p>
+<img src="https://i.postimg.cc/hXNK24y5/IMG-20250806-WA0007.jpg" alt="Sania Photo" class="photo">
 
-<div class="photo">
-    <!-- Yahan apni besti ka photo ka link lagao -->
-    <img src="https://images.unsplash.com/photo-1505765052889-1b2d7d5976f2?q=80&w=800&auto=format&fit=crop" alt="Best Friend Photo">
+<div class="message">
+    Sania tum meri zindgi me saab se especial hu ❤️<br>
+    meri wo dost meri hu besti jis ki sath mujy hamehsa sukoon milta 🥰
 </div>
 
 <footer>
-    From: Your Hamidoo 💕<br>
-    Made with Love ❤️ • 8 August 2025
+    From: Your Hamidoo 💕 • Made with Love ❤️ • 8 August 2025
 </footer>
+
+<!-- Hearts Animation -->
+<script>
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
